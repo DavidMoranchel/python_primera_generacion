@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Owners</title>
+{% endblock title %}
+
+{% block header %}
+<h1>Owners list</h1>
+{% endblock header %}
+
+{% block content %}
+<table>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+    </tr>
+    {% for owner in owners %}
+    <tr>
+      <td>{{ owner.id }}</td>
+      <td>{{ owner.first_name }}</td>
+      <td>{{ owner.last_name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+
