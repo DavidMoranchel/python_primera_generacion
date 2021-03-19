@@ -17,7 +17,11 @@
     </tr>
     {% for owner in owners %}
     <tr>
-      <td>{{ owner.id }}</td>
+      <td>
+        <a href="{% url 'vet:owners_detail' pk=owner.id  %}">
+          {{ owner.id }}
+        </a>
+      </td>
       <td>{{ owner.first_name }}</td>
       <td>{{ owner.last_name }}</td>
     </tr>
