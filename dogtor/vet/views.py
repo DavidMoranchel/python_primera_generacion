@@ -19,12 +19,23 @@ class OwnersDetail(DetailView):
     template_name = "vet/owners/detail.html"
     context_object_name = "owner"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context["view"].__dict__)
+        return context
+
 
 class OwnersCreate(CreateView):
     model = PetOwner
     template_name = "vet/owners/create.html"
     form_class = OwnerForm
     success_url = reverse_lazy("vet:owners_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["owners"] = PetOwner.objects.all().order_by("created_at")
+
+        return context
 
 
 class OwnersUpdate(UpdateView):

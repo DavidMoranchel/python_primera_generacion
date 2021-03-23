@@ -10,6 +10,13 @@
 
 {% block content %}
 
+<ul>
+  {% for owner in owners %}
+  <li>{{ owner.first_name }} {{ owner.last_name }}</li>
+  {% endfor %}
+</ul>
+
+
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
