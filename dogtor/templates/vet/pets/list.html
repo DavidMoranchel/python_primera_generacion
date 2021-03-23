@@ -9,7 +9,7 @@
 {% endblock header %}
 
 {% block content %}
-<table>
+<table class="table">
     <tr>
       <th>ID</th>
       <th>Name</th>
@@ -27,5 +27,9 @@
     </tr>
     {% endfor %}
 </table>
+
+<a type="button" href="{% url 'vet:pets_create' %}" class="btn btn-outline-primary">
+  Add pet
+</a>
 {% endblock content %}
 
