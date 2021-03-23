@@ -37,3 +37,10 @@ class PetsDetail(DetailView):
     model = Pet
     template_name = "vet/pets/detail.html"
     context_object_name = "pet"
+
+
+class PetsCreate(CreateView):
+    model = Pet
+    template_name = "vet/pets/create.html"
+    fields = ["name", "type", "owner"]
+    success_url = reverse_lazy("vet:pets_list")
