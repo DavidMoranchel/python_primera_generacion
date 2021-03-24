@@ -10,11 +10,35 @@
 
 {% block content %}
 
-<h1>Bienvenido {{ owner.first_name }}</h1>
 <p><strong>Name: </strong>{{ owner.first_name }} {{ owner.last_name }}</p>
 <p><strong>Address: </strong>{{ owner.address }}</p>
 <p><strong>Email: </strong>{{ owner.email }}</p>
 <p><strong>Phone: </strong>{{ owner.phone }}</p>
+{% if owner.pets.all %}
+<p><strong>Pets: </strong></p>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+          {% for pet in owner.pets.all %}
+          <tr>
+            <th scope="row">
+              <a href="{% url 'vet:pets_detail' pk=pet.id  %}">
+                {{ pet.id }}
+              </a>
+            </th>
+            <td>{{ pet.name }}</td>
+          </tr>
+          {% endfor %}
+      </table>    
+    </div>
+  </div>
+</div>
+{% endif %}
 
 {% endblock content %}
 
