@@ -34,7 +34,8 @@
             <td>{{ pet.name }}</td>
           </tr>
           {% endfor %}
-      </table>    
+      </table>
+      <a type="button" class="btn btn-outline-primary" href="{% url 'vet:pets_create' %}">Add Pet</a>    
     </div>
   </div>
 </div>
