@@ -71,7 +71,12 @@ class PetsCreate(CreateView):
     success_url = reverse_lazy("vet:pets_list")
     # login_url = reverse_lazy("login")
 
+    def get_initial(self):
+        initial = {}
+        for queryparam in self.request.GET:
+            initial[queryparam] = self.request.GET[queryparam]
 
+        return initial
 
 
 # class OwnersList(LoginRequiredMixin, ListView):
