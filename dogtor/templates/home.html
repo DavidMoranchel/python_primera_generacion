@@ -9,11 +9,7 @@
 {% endblock header %}
 
 
-{% block menu %}
-{% endblock menu %}
-
 {% block content %}
-
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
   <a class="btn btn-outline-danger" href="{% url 'logout' %}" >Log Out!</a>
