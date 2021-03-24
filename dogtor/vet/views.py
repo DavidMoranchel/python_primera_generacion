@@ -9,18 +9,18 @@ from .models import PetOwner, Pet
 from .forms import OwnerForm
 
 # Create your views here.
-class OwnersList(ListView):
+class OwnersList(LoginRequiredMixin, ListView):
     model = PetOwner
     template_name = "vet/owners/list.html"
     context_object_name = "owners"
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
 
-class OwnersDetail(DetailView):
+class OwnersDetail(LoginRequiredMixin, DetailView):
     model = PetOwner
     template_name = "vet/owners/detail.html"
     context_object_name = "owner"
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -28,12 +28,12 @@ class OwnersDetail(DetailView):
         return context
 
 
-class OwnersCreate(CreateView):
+class OwnersCreate(LoginRequiredMixin, CreateView):
     model = PetOwner
     template_name = "vet/owners/create.html"
     form_class = OwnerForm
     success_url = reverse_lazy("vet:owners_list")
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,34 +42,34 @@ class OwnersCreate(CreateView):
         return context
 
 
-class OwnersUpdate(UpdateView):
+class OwnersUpdate(LoginRequiredMixin, UpdateView):
     model = PetOwner
     form_class = OwnerForm
     template_name = "vet/owners/update.html"
     success_url = reverse_lazy("vet:owners_list")
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
 
-class PetsList(ListView):
+class PetsList(LoginRequiredMixin, ListView):
     model = Pet
     template_name = "vet/pets/list.html"
     context_object_name = "pets"
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
 
-class PetsDetail(DetailView):
+class PetsDetail(LoginRequiredMixin, DetailView):
     model = Pet
     template_name = "vet/pets/detail.html"
     context_object_name = "pet"
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
 
-class PetsCreate(CreateView):
+class PetsCreate(LoginRequiredMixin, CreateView):
     model = Pet
     template_name = "vet/pets/create.html"
     fields = ["name", "type", "owner"]
     success_url = reverse_lazy("vet:pets_list")
-    # login_url = reverse_lazy("login")
+    login_url = reverse_lazy("login")
 
     def get_initial(self):
         initial = {}
@@ -77,10 +77,3 @@ class PetsCreate(CreateView):
             initial[queryparam] = self.request.GET[queryparam]
 
         return initial
-
-
-# class OwnersList(LoginRequiredMixin, ListView):
-#     model = PetOwner
-#     template_name = "vet/owners/list.html"
-#     context_object_name = "owners"
-#     login_url = reverse_lazy("login")
