@@ -1,10 +1,9 @@
 from django.urls import path, include
-from rest_framework import routers
-from .views import OwnersViewSet
 
-router = routers.DefaultRouter()
-router.register(r"owners", OwnersViewSet)
+from .views import ListOwnersAPIView, RetrieveOwnersAPIView, CreateOwnersAPIView
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("owners/", ListOwnersAPIView.as_view(), name="list-owners"),
+    path("owners/create/", CreateOwnersAPIView.as_view(), name="create-owners"),
+    path("owners/<int:pk>/", RetrieveOwnersAPIView.as_view(), name="retrieve-owners"),
 ]
