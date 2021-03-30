@@ -1,5 +1,5 @@
 from django.urls import path, include
-
+from rest_framework.authtoken import views
 from .views import (
     # Owners
     ListOwnersAPIView,
@@ -19,6 +19,7 @@ from .views import (
 urlpatterns = [
     # Users
     path("users/create/", CreateUsersAPIView.as_view(), name="create-users"),
+    path("users/login/", views.obtain_auth_token, name="login-users"),
     # Owners
     path("owners/", ListOwnersAPIView.as_view(), name="list-owners"),
     path("owners/create/", CreateOwnersAPIView.as_view(), name="create-owners"),
