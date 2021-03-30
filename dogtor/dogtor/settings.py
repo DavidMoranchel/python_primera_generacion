@@ -26,8 +26,8 @@ SECRET_KEY = "kb4x$zfcddrtkt1ch)bh3fo#p=hp@qejk1ufs*a=d_c8dcewvv"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-CORS_ORIGIN_ALLOW_ALL = True
+# ALLOWED_HOSTS = ["*"]
+# CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ORIGIN_WHITELIST = ["http://localhost:5000"]
 
 # Application definition
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     # Instaled apps
     "crispy_forms",
     "rest_framework",
-    "corsheaders",
+    # "rest_framework.authtoken",
+    # "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
 ]
+
+# REST_FRAMEWORK = {
+#     "DEFAULT_AUTHENTICATION_CLASSES": (
+#         "rest_framework.authentication.TokenAuthentication",
+#     ),
+#     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+# }
 
 ROOT_URLCONF = "dogtor.urls"
 

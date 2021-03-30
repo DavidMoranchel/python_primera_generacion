@@ -1,17 +1,25 @@
 from django.urls import path, include
 
 from .views import (
+    # Owners
     ListOwnersAPIView,
     RetrieveOwnersAPIView,
     CreateOwnersAPIView,
     UpdateOwnersAPIView,
     DestroyOwnersAPIView,
     RetrieveOwnerPetsAPIView,
+    # Pets
     ListPetsAPIView,
     RetrievePetsOwnerAPIView,
+    RetrieveUpdatePetsAPIView,
+    # Users
+    CreateUsersAPIView,
 )
 
 urlpatterns = [
+    # Users
+    path("users/create/", CreateUsersAPIView.as_view(), name="create-users"),
+    # Owners
     path("owners/", ListOwnersAPIView.as_view(), name="list-owners"),
     path("owners/create/", CreateOwnersAPIView.as_view(), name="create-owners"),
     path("owners/<int:pk>/", RetrieveOwnersAPIView.as_view(), name="retrieve-owners"),
@@ -28,8 +36,14 @@ urlpatterns = [
         RetrieveOwnerPetsAPIView.as_view(),
         name="retrieve-owner-pets",
     ),
+    # Pets
     path("pets/", ListPetsAPIView.as_view(), name="list-pets"),
     path(
         "pets/<int:pk>/", RetrievePetsOwnerAPIView.as_view(), name="retrieve-pets-owner"
+    ),
+    path(
+        "pets/<int:pk>/retrieve-update/",
+        RetrieveUpdatePetsAPIView.as_view(),
+        name="retrieve-update-pets",
     ),
 ]

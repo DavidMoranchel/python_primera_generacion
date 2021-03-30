@@ -1,16 +1,24 @@
 from rest_framework import generics
 
+from django.contrib.auth.models import User
+
 from vet.models import PetOwner, Pet, PetDate
 
 from .serializers import (
+    # Owners
     OwnersListSerializer,
     OwnersSerializer,
     OwnerPetsSerializer,
+    # Pets
     PetsListSerializer,
     PetOwnerSerializer,
+    PetsSerializer,
+    # Users
+    UsersSerializer,
 )
 
-# Create your views here.
+
+# Pet Owners
 
 
 class ListOwnersAPIView(generics.ListAPIView):
@@ -51,3 +59,16 @@ class ListPetsAPIView(generics.ListAPIView):
 class RetrievePetsOwnerAPIView(generics.RetrieveAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetOwnerSerializer
+
+
+class RetrieveUpdatePetsAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Pet.objects.all()
+    serializer_class = PetsSerializer
+
+
+# Users
+
+
+class CreateUsersAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
