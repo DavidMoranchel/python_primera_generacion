@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, filters, permissions
 
 from django.contrib.auth.models import User
 
@@ -19,19 +19,14 @@ from .serializers import (
 
 
 # Pet Owners
-# from django_filters.rest_framework import DjangoFilterBackend
-# from rest_framework import filters
 
 
 class ListOwnersAPIView(generics.ListAPIView):
     queryset = PetOwner.objects.all().order_by("created_at")
     serializer_class = OwnersListSerializer
-    # permission_classes = []
-    # filter_backends = [DjangoFilterBackend]
-    # filterset_fields = ["first_name", "pets__name"]
-
-    # filter_backends = [filters.SearchFilter]
-    # search_fields = ["first_name"]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["first_name", "last_name"]
+    # permission_classes = [permissions.IsAdminUser]
 
 
 class CreateOwnersAPIView(generics.CreateAPIView):
@@ -62,6 +57,7 @@ class RetrieveOwnerPetsAPIView(generics.RetrieveAPIView):
 class ListPetsAPIView(generics.ListAPIView):
     queryset = Pet.objects.all().order_by("type")
     serializer_class = PetsListSerializer
+    filterset_fields = ["name"]
 
 
 class RetrievePetsOwnerAPIView(generics.RetrieveAPIView):
@@ -82,4 +78,4 @@ from rest_framework import permissions
 class CreateUsersAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
-    # permission_classes = []
+    permission_classes = []
