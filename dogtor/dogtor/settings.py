@@ -26,8 +26,8 @@ SECRET_KEY = "kb4x$zfcddrtkt1ch)bh3fo#p=hp@qejk1ufs*a=d_c8dcewvv"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ["*"]
-# CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ORIGIN_WHITELIST = ["http://localhost:5000"]
 
 # Application definition
@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "crispy_forms",
     "rest_framework",
     "rest_framework.authtoken",
-    # "corsheaders",
+    "corsheaders",
+    # "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 ROOT_URLCONF = "dogtor.urls"

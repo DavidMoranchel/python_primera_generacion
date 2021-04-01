@@ -19,11 +19,19 @@ from .serializers import (
 
 
 # Pet Owners
+# from django_filters.rest_framework import DjangoFilterBackend
+# from rest_framework import filters
 
 
 class ListOwnersAPIView(generics.ListAPIView):
     queryset = PetOwner.objects.all().order_by("created_at")
     serializer_class = OwnersListSerializer
+    # permission_classes = []
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ["first_name", "pets__name"]
+
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ["first_name"]
 
 
 class CreateOwnersAPIView(generics.CreateAPIView):
@@ -68,7 +76,10 @@ class RetrieveUpdatePetsAPIView(generics.RetrieveUpdateAPIView):
 
 # Users
 
+from rest_framework import permissions
+
 
 class CreateUsersAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
+    # permission_classes = []
